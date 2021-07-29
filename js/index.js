@@ -10,11 +10,8 @@ copyright.innerHTML = "&copy; Laurindo Muginga " + thisYear;
 footer.appendChild(copyright);
 
 // Add Skills Section into web
-let skills = ["GitHub", "Planning", "Security", "Systems", "Protocols", "Technical", "Network", "Operation", "Technology",
-  "Monitoring", "Vulnerability", "Management", "Database", "Debugging", "JavaScript", "C",
-  "Python", "Shell", "Power Shell", "HTML", "Kubernetes", "Google Cloud", "Virtual Machines",
-  "VPN", "VPC", "Linux", "Windows", "SQL", "Storage"
-];
+let skills = ["GitHub", "JavaScript", "CSS", "C", "Python", "Shell", 
+  "HTML", "Kubernetes", "Google Cloud", "SQL"];
 
 // Create List of Skills
 let skillsSection = document.querySelector('#skills');
@@ -32,7 +29,7 @@ messageForm.addEventListener('submit', (e) => {
   let name = document.querySelector('input[name="name"]');
   let email = document.querySelector('input[name="email"]');
   let message = document.querySelector('textarea[name="message"]');
-
+ 
   // log the three variables: name, email and message.
   console.log({
     name,
@@ -52,11 +49,55 @@ messageForm.addEventListener('submit', (e) => {
 
   // Set event listener to handle the "click" event.
   removeButton.addEventListener('click', (e) => {
-    let entry = e.target.parentNode;
+    const entry = e.target.parentNode;
     entry.remove();
   });
-  // Appending new massages and messages list
+
+  // Hide Message Section if empty
+  const hideList = document.createElement('button');
+  hideList.innerHTML = 'hide';
+  hideList.setAttribute('type', 'button');
+  
+  hideList.addEventListener('click', (e) => {
+    const messages = e.target.parentNode;
+    hideList.textContent = 'hide';
+    if(massegeList.innerHTML.trim() == false) {
+      const messageSection = document.getElementsById('#messages');
+      messageSection.style.display = 'none';
+    }
+  });
   newMessage.appendChild(removeButton);
+
+  // add "edit" button after messagewas submitted
+  const editSaveButton = document.createElement('button');
+  editSaveButton.innerHTML = 'edit';
+  editSaveButton.addEventListener('click', (e) => {
+    const li = e.target.parentNode;
+    if(editSaveButton.innerHTML == 'edit') {
+      makeMessageEditable(li);
+      editSaveButton.innerHTML = 'save';
+    } else {
+      saveEditedMessage(li);
+      editSaveButton.innerHTML = 'edit';
+    }
+  });
+  newMessage.appendChild(editSaveButton);
   messageList.appendChild(newMessage);
   messageForm.reset();
+
+// Refactoring the code 
+function makeMessageEditable(li) {
+  // swap out the <span> element for an <input> element
+  const message = li.querySelector('span');
+  const input = document.createElement('input');
+  input.value = message.innerHTML;
+  li.replaceChild(input, message);
+}
+function saveEditedMessage(li) {
+  // swap the <input> element back to a <span> element.
+  const input = li.querySelector('input');
+  const message = document.createElement('span');
+  message.innerHTML = input.value;
+  li.replaceChild(message, input);
+}
 });
