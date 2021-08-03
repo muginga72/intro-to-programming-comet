@@ -5,13 +5,13 @@ let footer = document.querySelector('footer');
 let copyright = document.createElement('p');
 
 // Set the inner HTML of your copyright element to display: name & Year.
-copyright.innerHTML = "&copy; Laurindo Muginga " + thisYear;
+copyright.innerHTML = "&copy; Eli James " + thisYear;
 // Append the copyright element to the footer
 footer.appendChild(copyright);
 
 // Add Skills Section into web
-let skills = ["GitHub", "JavaScript", "CSS", "C", "Python", "Shell", 
-  "HTML", "Kubernetes", "Google Cloud", "SQL"];
+let skills = ["GitHub", "JavaScript", "CSS", "C", "Python", "HTML", "Google Cloud", 
+  "SQL", "Multilingual"];
 
 // Create List of Skills
 let skillsSection = document.querySelector('#skills');
@@ -39,46 +39,38 @@ messageForm.addEventListener('submit', (e) => {
 
   // Handler messages form user interation.
   let messageSection = document.querySelector('#messages');
+  messageSection.removeAttribute('hidden'); // added for hidden message 
   let messageList = messageSection.querySelector('ul');
   let newMessage = document.createElement('li');
-  newMessage.innerHTML = `<a href="mailto: ${email.value}"> ${name.value}</a> wrote: <span> ${message.value} </span>`;
+  newMessage.innerHTML = `<a href="mailto: ${email.value}"> ${name.value}</a> 
+    wrote: <span> ${message.value} </span>`;
 
   let removeButton = document.createElement('button');
-  removeButton.innerHTML = 'remove';
+  removeButton.innerHTML = 'Remove';
   removeButton.type = 'button';
+  removeButton.className = "removeButton"; // For css style color code
 
   // Set event listener to handle the "click" event.
   removeButton.addEventListener('click', (e) => {
-    const entry = e.target.parentNode;
-    entry.remove();
-  });
-
-  // Hide Message Section if empty
-  const hideList = document.createElement('button');
-  hideList.innerHTML = 'hide';
-  hideList.setAttribute('type', 'button');
-  
-  hideList.addEventListener('click', (e) => {
-    const messages = e.target.parentNode;
-    hideList.textContent = 'hide';
-    if(massegeList.innerHTML.trim() == false) {
-      const messageSection = document.getElementsById('#messages');
-      messageSection.style.display = 'none';
+    const li = e.target.parentNode; // changed entry to li
+    li.remove();
+    if (URL.childElementCount == 0) {
+      messageSection.setAttribute('hidden', true);
     }
   });
   newMessage.appendChild(removeButton);
 
-  // add "edit" button after messagewas submitted
+  // Add "edit" button after messagewas submitted
   const editSaveButton = document.createElement('button');
-  editSaveButton.innerHTML = 'edit';
+  editSaveButton.innerHTML = 'Edit';
   editSaveButton.addEventListener('click', (e) => {
     const li = e.target.parentNode;
-    if(editSaveButton.innerHTML == 'edit') {
+    if(editSaveButton.innerHTML == 'Edit') {
       makeMessageEditable(li);
-      editSaveButton.innerHTML = 'save';
+      editSaveButton.innerHTML = 'Save';
     } else {
       saveEditedMessage(li);
-      editSaveButton.innerHTML = 'edit';
+      editSaveButton.innerHTML = 'Edit';
     }
   });
   newMessage.appendChild(editSaveButton);
@@ -87,14 +79,15 @@ messageForm.addEventListener('submit', (e) => {
 
 // Refactoring the code 
 function makeMessageEditable(li) {
-  // swap out the <span> element for an <input> element
+  // Swap out the <span> element for an <input> element
   const message = li.querySelector('span');
   const input = document.createElement('input');
   input.value = message.innerHTML;
-  li.replaceChild(input, message);
+  // ReplaceChild method(newChild, oldChild) in li
+  li.replaceChild(input, message); 
 }
 function saveEditedMessage(li) {
-  // swap the <input> element back to a <span> element.
+  // Swap the <input> element back to a <span> element.
   const input = li.querySelector('input');
   const message = document.createElement('span');
   message.innerHTML = input.value;
