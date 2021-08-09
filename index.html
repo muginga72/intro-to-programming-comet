@@ -2,74 +2,57 @@
 <html lang="en">
 
 <head>
-  <title>Eli Portfolio</title>
+  <!--Inserted sticky banner-->
+  <div id="banner"><p><strong>JavaScript</strong>,<strong> CSS</strong> and <strong> HTML coding</strong> is enjoyable! and <em>new reality.</em></p></div>
+  <title clase="title">Eli Portfolio</title>
+  
   <meta charset="UTF-8">
+  <!--Inserted meta viewport declaraction--> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href ="css/index.css">
 </head>
 
 <body>
+  <div class="nav">
+    <ul id="main">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#connect">Connect</a></li>
+      <li><a href="#message">Leave a Message</a></li>
+    </ul>
+  </div>
   <div>
     <header>
-      <section>
-
-        <h1 id="author">Eli James</h1>
-        <p>Published: August 3, 2021</p>
-
-      </section>
-      <nav>
-
-        <div>
-          <section>
-            <figure>
-              <img src="img/profile-pic.jpg" alt="Emoji with hat and glasses">
-              <figcaption>
-                <p><strong>JavaScript</strong>,<strong> CSS</strong> and <strong> HTML coding</strong> is enjoyable! and <em>new reality.</em></p>
-              </figcaption>
-            </figure>
-          </section>
-        </div>
-
-        <ul id="main">
-          <li><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#connect">Connect</a></li>
-          <li><a href="#message">Leave a Message</a></li>
-        </ul>
-        
-      </nav>
-
+      <div class="logo">
+        <div class="img"><img src="img/profile-pic.jpg" alt="Emoji with hat and glasses" class="small-img"></div>
+        <div class="name">Eli James</div>
+      </div>
     </header>
 
     <main>
       <section id="about">
 
         <h1>About</h1>
-        <p>I'm currently taking the software developer course with Code the Dream. I like
-          coding and looking forward to changing my career. I earned a degree in <strong>Geosciences on December 2003</strong>.</p>
-        <p>While living in my home country. I was working with an Italian company. The communication was in both English and Italian. I immigrated to Maine in 2017, worked on a Boston harbor dredging project until
-          I relocated to North Carolina in 2019.</p>
+        <p>I'm currently taking the software developer course with Code the Dream.</p> 
+        <p>I like the feeling to overcome coding challenges every time I get back to my computer.</p>
+        
       </section>
 
       <section id="experience">
 
         <h1>Experience</h1>
-        <ul id="mainlist">
-          <li>Qwiklabs Projects in Google Cloud Platform with Coursera: <strong> June 2020 - April 2021</strong>.</li>
-          <ul id="sublist">
-            <li><a href="https://www.coursera.org/account/accomplishments/professional-cert/2BHSL9BZC4FS" target="_blank">Preparing for Google Cloud Certification: Cloud Architect</a></li>
-            <li><a href="https://www.coursera.org/account/accomplishments/professional-cert/4F84T5T43F7Q" target="_blank">Google Cloud Network Engineer</a></li>
-            <li><a href="https://www.coursera.org/account/accomplishments/professional-cert/9T9E9S6H6FFW" target="_blank">Google Cloud Security Engineer</a></li>
-            <li><a href="https://www.coursera.org/account/accomplishments/professional-cert/YY86MV2KM93W" target="_blank">Google IT Support</a></li>
-            <li><a href="https://www.coursera.org/account/accomplishments/professional-cert/7GXM6NRUF9UG" target="_blank">Google IT Automation with Python</a></li>
-          </ul>
-          <li>Proficient knowledge in Python, C, JavaScript, Html, and Google Cloud Platform.</li>
-          <li>12 years experience as Geologist and Geophysicist investigating the underground for Oil and Gas accumulation: <strong>June 2004 - December 2016</strong>.</li>
-        </ul>
-
+      <!--Change "Experience" section layout to a grid-->
+        <div class="wrapper">
+          <div class="box1">Qwiklabs Projects in Google Cloud with Coursera; <strong> June 2020 - May 9, 2021</strong></div>
+          <div class="box2"><a href="https://www.coursera.org/account/accomplishments/professional-cert/2BHSL9BZC4FS" target="_blank">Google Cloud Portfolio</a></div>
+          <div class="box3">Geologist and Geophysicist; <strong> June 2004 - December 2016</strong>.</div>
+          <div class="box3">GeoFrame, Petrel, CMUI, and ArcGis</div>
+          </div>
+        </div>
       </section>
       <!--The container where I'll add dinamic ul and li elements-->
       <section id="skills">
@@ -89,22 +72,28 @@
         <!--Container to capture the name, email and leave message from user-->
         <h1>Leave a Message</h1>
         <form name="leave_message">
-
-          <label for="name"><strong>Name</strong></label><br>
-          <input type:"text" name="name" required=true placeholder="Enter your name" ><br>
-
-          <label for="mail"><strong>Email Address</strong></label><br>
-          <input type:"email" name="email" required=true placeholder="Enter your email address" ><br>
-
-          <label for="message"><strong>Message</strong></label><br>
-          <textarea name="message" required=true placeholder="Leave me a message" ></textarea><br>
-
-          <button id="submitButton" type="submit"><strong>Submit</strong></button>
-        </form>
+          <div class="leave-a-message">
+            <div class="item-1">
+            <label for="name"><strong>Name</strong></label><br>
+            <input type:"text" name="name" required=true placeholder="Enter your name" ><br>
+            </div>
+            <div class="item-2">
+            <label for="mail"><strong>Email Address</strong></label><br>
+            <input type:"email" name="email" required=true placeholder="Enter your email address" ><br>
+            </div>
+            <div class="item-3">
+            <label for="message"><strong>Message</strong></label><br>
+            <textarea name="message" required=true placeholder="Leave me a message" ></textarea><br>
+            </div>
+            <div class="item-1">
+            <button id="submitButton" type="submit"><strong>Submit</strong></button>
+            </div>
+          </div>
+          </form> 
       </section>
 
       <section id="messages" hidden>
-        <h3>Massages</h3>
+        <h3>Messages</h3>
         <ul id="newMessage">
           <!-- inserted <li id="message"> tag with JavaScript-->
         </ul>
