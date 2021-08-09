@@ -10,8 +10,7 @@ copyright.innerHTML = "&copy; Eli James " + thisYear;
 footer.appendChild(copyright);
 
 // Add Skills Section into web
-let skills = ["GitHub", "JavaScript", "CSS", "C", "Python", "HTML", "Google Cloud", 
-  "SQL", "Multilingual"];
+let skills = ["GitHub", "JavaScript", "CSS", "C", "Python", "HTML", "Google Cloud", "Customer Services", "ArcGis", "Multilingual"];
 
 // Create List of Skills
 let skillsSection = document.querySelector('#skills');
