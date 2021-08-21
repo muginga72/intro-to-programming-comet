@@ -79,6 +79,14 @@ h5 {
     border-radius: 8px;
     box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
 }
+
+/* =============== Projects ================ */
+.projects {
+    list-style-type: none;
+    font-size: larger;
+    font-weight: bolder;
+}
+
 /* Style the "Leave a Message" form elements: 
     1) Change font size and color of labels */
     label {
@@ -87,21 +95,18 @@ h5 {
     margin: 0rem;
     padding: 0rem;
 }
-/*
-    2) Change font size, padding, border, etc. of inputs and textarea */
+/* 2) Change font size, padding, border, etc. of inputs and textarea */
     textarea {
         font-size: 1.0rem;
         padding: 16px 2px 2px 8px;
         font-style: italic;
     }    
-/*    
-    3) Add spacing (padding/margin) between form fields */
+/* 3) Add spacing (padding/margin) between form fields */
     #message {
         margin-bottom: 1.5rem;
         padding: 1rem;
     }
-/*    
-    4) Change padding, background color, border, etc. of submit button */
+/* 4) Change padding, background color, border, etc. of submit button */
     #submitButton { /* submit button style */
         font-size: 1.0rem;
         color:white;
@@ -158,7 +163,7 @@ footer p {
 }
 
 /* Add a navigational header to your webpage */
-    /* The navigation menu should include a link to each of your sections (i.e. "About", "Experience", etc.) */
+
     .nav ul li {
         list-style-type: none;
         font-size: 1rem;

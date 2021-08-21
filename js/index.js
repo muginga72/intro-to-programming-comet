@@ -10,7 +10,16 @@ copyright.innerHTML = "&copy; Eli James " + thisYear;
 footer.appendChild(copyright);
 
 // Add Skills Section into web
-let skills = ["GitHub", "JavaScript", "CSS", "C", "Python", "HTML", "Google Cloud", "Customer Services", "ArcGis", "Multilingual"];
+let skills = [
+  "GitHub",
+  "JavaScript",
+  "CSS", "C", "Python",
+  "HTML",
+  "Google Cloud",
+  "Customer Services",
+  "ArcGis",
+  "Multilingual"
+];
 
 // Create List of Skills
 let skillsSection = document.querySelector('#skills');
@@ -28,7 +37,7 @@ messageForm.addEventListener('submit', (e) => {
   let name = document.querySelector('input[name="name"]');
   let email = document.querySelector('input[name="email"]');
   let message = document.querySelector('textarea[name="message"]');
- 
+
   // log the three variables: name, email and message.
   console.log({
     name,
@@ -38,10 +47,10 @@ messageForm.addEventListener('submit', (e) => {
 
   // Handler messages form user interation.
   let messageSection = document.querySelector('#messages');
-  messageSection.removeAttribute('hidden'); // added for hidden message 
+  messageSection.removeAttribute('hidden'); // added for hidden message
   let messageList = messageSection.querySelector('ul');
   let newMessage = document.createElement('li');
-  newMessage.innerHTML = `<a href="mailto: ${email.value}"> ${name.value}</a> 
+  newMessage.innerHTML = `<a href="mailto: ${email.value}"> ${name.value}</a>
     wrote: <span> ${message.value} </span>`;
 
   let removeButton = document.createElement('button');
@@ -76,14 +85,14 @@ messageForm.addEventListener('submit', (e) => {
   messageList.appendChild(newMessage);
   messageForm.reset();
 
-// Refactoring the code 
+// Refactoring the code
 function makeMessageEditable(li) {
   // Swap out the <span> element for an <input> element
   const message = li.querySelector('span');
   const input = document.createElement('input');
   input.value = message.innerHTML;
   // ReplaceChild method(newChild, oldChild) in li
-  li.replaceChild(input, message); 
+  li.replaceChild(input, message);
 }
 function saveEditedMessage(li) {
   // Swap the <input> element back to a <span> element.
@@ -93,3 +102,26 @@ function saveEditedMessage(li) {
   li.replaceChild(message, input);
 }
 });
+
+// Add Project Section to web page
+const githubRequest = new XMLHttpRequest();
+githubRequest.onreadystatechange = function() {
+  if (githubRequest.readyState === 4) {
+    const projects = JSON.parse(this.response);
+
+    console.log(projects);
+
+    let projectSection = document.querySelector('#projects');
+    let projectList = projectSection.getElementsByTagName('ul')[0];
+    for (let i = 0; i < projects.length; i++) {
+      let project = document.createElement('li');
+      const repoURL = document.createElement('a')
+      repoURL.href = projects[i].html_url
+      project.innerText = projects[i].name;
+      repoURL.appendChild(project);
+      projectList.appendChild(repoURL);
+    }
+  }
+}
+githubRequest.open('GET', 'https://api.github.com/users/muginga72/repos');
+githubRequest.send();
