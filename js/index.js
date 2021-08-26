@@ -103,25 +103,33 @@ function saveEditedMessage(li) {
 }
 });
 
-// Add Project Section to web page
-const githubRequest = new XMLHttpRequest();
-githubRequest.onreadystatechange = function() {
-  if (githubRequest.readyState === 4) {
-    const projects = JSON.parse(this.response);
+// Add Project Section to web page fetch function
+const eliRepoAPI = 'https://api.github.com/users/muginga72/repos'
 
-    console.log(projects);
-
-    let projectSection = document.querySelector('#projects');
-    let projectList = projectSection.getElementsByTagName('ul')[0];
-    for (let i = 0; i < projects.length; i++) {
-      let project = document.createElement('li');
-      const repoURL = document.createElement('a')
-      repoURL.href = projects[i].html_url
-      project.innerText = projects[i].name;
-      repoURL.appendChild(project);
-      projectList.appendChild(repoURL);
+fetch(eliRepoAPI)
+  .then(response => {
+    if (response.status != 200) {
+      throw new Error(`Failed to fetch ${eliRepoAPI}. Status:
+        ${response.status}, Status Text: ${response.stutusText}`)
     }
+    return response.json();
+  })
+  .then(addReposToProjectSection)
+  .catch((err) => {
+    console.error({ err: err })
+  });
+
+function addReposToProjectSection(repositories) {
+  console.log({ repositories: repositories})
+  const projectSection = document.getElementById('projects');
+  const projectList = projectSection.querySelector('ul');
+  for (let i = 0; i < repositories.length; i++) {
+    const repo = repositories[i];
+    const project = document.createElement('li');
+    const repoURL = document.createElement('a')
+    repoURL.setAttribute('href', repo.html_url);
+    repoURL.innerText = repo.name;
+    project.appendChild(repoURL);
+    projectList.appendChild(project);
   }
 }
-githubRequest.open('GET', 'https://api.github.com/users/muginga72/repos');
-githubRequest.send();
